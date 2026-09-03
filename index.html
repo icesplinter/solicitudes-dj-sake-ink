@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJ Sake — Propón tu tema</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            /* Imagen de fondo nítida y a pantalla completa */
+            background-image: url('fondo-sake.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Mantiene el fondo fijo al hacer scroll */
+        }
+
+        /* Capa oscura opcional para dar contraste si el fondo es muy claro */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Ajusta el 0.5 para más/menos oscuridad */
+            z-index: 1;
+        }
+
+        .card {
+            position: relative; /* Para estar por encima de la capa oscura */
+            z-index: 2;
+            width: 100%;
+            max-width: 420px;
+            /* Efecto cristal (Glassmorphism) */
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px); /* Soporte para Safari */
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 28px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 0, 85, 0.2);
+            color: #ff2a70;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 7px 15px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 0, 85, 0.4);
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        p.subtitle {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 35px;
+            line-height: 1.5;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .input-group {
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        input:focus {
+            border-color: #ff2a70;
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 15px rgba(255, 42, 112, 0.4);
+        }
+
+        /* Estilo para el placeholder (texto de ejemplo) */
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        button {
+            margin-top: 10px;
+            width: 100%;
+            padding: 18px;
+            border-radius: 14px;
+            border: none;
+            background: linear-gradient(135deg, #ff2a70 0%, #d6004c 100%);
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 10px 25px rgba(255, 42, 112, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(255, 42, 112, 0.5);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <span class="badge">Live Set</span>
+    <h1>DJ SAKE</h1>
+    <p class="subtitle">¿Qué tema quieres escuchar hoy?<br>Envía tu petición directa a la cabina.</p>
+
+    <form action="https://api.web3forms.com/submit" method="POST">
+        <!-- Clave de acceso de Web3Forms (La de tu captura) -->
+        <input type="hidden" name="access_key" value="80c72b0a-736f-4cd3-a333-da38295bad61">
+
+        <div class="input-group">
+            <label for="cancion">Canción y Artista *</label>
+            <input type="text" id="cancion" name="cancion" placeholder="Ej: Strobe - Deadmau5" required>
+        </div>
+
+        <div class="input-group">
+            <label for="nombre">Tu Nombre / Mesa (Opcional)</label>
+            <input type="text" id="nombre" name="nombre_fan" placeholder="Ej: Alex (Mesa 4)">
+        </div>
+
+        <button type="submit">Enviar propuesta 🎵</button>
+    </form>
+</div>
+
+</body>
+</html>
